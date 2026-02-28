@@ -6,6 +6,12 @@ const router = express.Router();
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] ${req.method} ${req.url}\n`);
+  next();
+});
+
 let cars = [
   { id: 1, make: "Toyota", model: "Camry", year: 2020, price: 25000 },
   { id: 2, make: "Honda", model: "Civic", year: 2019, price: 22000 },
